@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>modal</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/main.min.css" />
+  </head>
+
+  <body>
+    <section>
+      <div class="logo">
+        <a href="/"
+          ><img
+            src="https://myfasting.coach/wp-content/uploads/2021/06/Group-5339.png"
+            alt="My Fasting"
+            class="lazyloaded"
+            data-ll-status="loaded" /><noscript
+            ><img
+              src="https://myfasting.coach/wp-content/uploads/2021/06/Group-5339.png"
+              alt="My Fasting" /></noscript
+        ></a>
+      </div>
+
+      <div class="backdrop is-hidden" data-modal>
+        <div class="modal">
+          <form>
+            <h1 class="formTitle">Don’t lose your quiz progress...</h1>
+            <p class="formText">
+              If you leave the page, your personalized fasting plan will be lost
+            </p>
+            <p class="formTextDate">
+              50kg <span class="formTextDateSpan"> by October 9, 2020</span>
+            </p>
+            <ul class="formList">
+              <li class="formLink">
+                <svg class="formIconCheck" width="16" height="16">
+                  <use href="./images/icons/sprite.svg#icon-vector"></use>
+                </svg>
+                <p>30-day money back guarantee.</p>
+              </li>
+              <li class="formLink">
+                <svg class="formIconCheck" width="16" height="16">
+                  <use href="./images/icons/sprite.svg#icon-vector"></use>
+                </svg>
+                <p>No commitments. Cancel anytime.</p>
+              </li>
+            </ul>
+            <button class="button">Save my plan & сontinue</button>
+
+            <a href="#" class="formLeave">Leave anyway</a>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="./js/modal.js"></script>
+  </body>
+</html>

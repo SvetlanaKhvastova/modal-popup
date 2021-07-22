@@ -1,0 +1,24 @@
+.button {
+  display: inline-block;
+
+  min-width: 261px;
+  padding: 17px 49px;
+
+  border: 1px solid transparent;
+  border-radius: 4px;
+  color: $secondary-text-color;
+  background-color: #161622;
+
+  // font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.57;
+
+  text-align: center;
+  cursor: pointer;
+
+  @include for-size(tablet) {
+    min-width: 307px;
+    padding: 17px 72px;
+  }
+}
