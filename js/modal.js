@@ -1,31 +1,31 @@
 (() => {
-  let scrolled;
-  let timer;
-
   const refs = {
     modal: document.querySelector("[data-modal]"),
     windowBody: document.querySelector("body"),
     logo: document.querySelector(".logo"),
     closeOverlay: document.querySelector(".backdropModal"),
+    buttonClose: document.querySelector(".button"),
   };
 
-  document.addEventListener("touchmove", toggleModal, false);
+  let scrolled;
+  let timer = 0;
 
-  refs.windowBody.addEventListener("mouseout", toggleModal);
+  refs.logo.addEventListener("mouseout", toggleModal);
   refs.closeOverlay.addEventListener("click", toggleModal);
+  refs.buttonClose.addEventListener("click", toggleModal);
 
-  window.onscroll = function () {
-    toggleModal();
-  };
+  document.addEventListener("touchmove", toggleModal);
+  // window.onscroll = toggleModal();
 
   function toggleModal() {
-    scrolled = window.pageXOffset;
-
+    scrolled = window.pageYOffset;
+    console.log(window.pageYOffset);
     scrollToTop();
-    refs.logo.classList.add("modal-open");
-    refs.modal.classList.remove("is-hidden");
 
-    refs.windowBody.removeEventListener("mouseout", toggleModal);
+    refs.logo.classList.toggle("modal-open");
+    refs.modal.classList.toggle("is-hidden");
+
+    // refs.windowBody.removeEventListener("mouseout", toggleModal);
   }
 
   function scrollToTop() {
