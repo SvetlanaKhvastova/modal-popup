@@ -1,20 +1,5 @@
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-body {
-  background-color: #ef4e44;
-  color: #000000;
-  font-family: "DM Sans", sans-serif;
-}
-
-body.modal-open {
-  overflow: hidden;
-}
-
+let style = `
+    <style>
 h1,
 h2,
 h2,
@@ -253,4 +238,108 @@ img {
     margin-bottom: 7px;
   }
 }
-/*# sourceMappingURL=main.css.map */
+    </style>
+`;
+
+let popup = `
+<section>
+    
+      <div class="backdropModal is-hidden" data-modal>
+        <div class="modalPopUp">
+          <form>
+            <h1 class="formTitle">Don’t lose your quiz progress...</h1>
+            <p class="formText">
+              If you leave the page, your personalized fasting plan will be lost
+            </p>
+            <p class="formTextDate">
+              50kg <span class="formTextDateSpan"> by October 9, 2020</span>
+            </p>
+            <ul class="formList">
+              <li class="formLink">
+                 <svg
+                  class="formIconCheck"
+                  width="15"
+                  height="16"
+                  viewBox="0 0 15 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.74188 10.4127L5.84797 10.5187L5.95399 10.4126L14.3895 1.97263L14.3899 1.97295L14.3974 1.96416C14.4948 1.85044 14.5457 1.70417 14.5399 1.55456C14.5341 1.40495 14.4721 1.26303 14.3662 1.15717C14.2603 1.0513 14.1184 0.989279 13.9688 0.9835C13.8192 0.977721 13.6729 1.02861 13.5592 1.12599L13.5589 1.12566L13.5508 1.1338L5.83907 8.83675L1.94507 4.94275L1.94539 4.94243L1.93657 4.93488C1.82286 4.8375 1.67658 4.78661 1.52697 4.79239C1.37736 4.79817 1.23545 4.86019 1.12958 4.96606C1.02371 5.07192 0.961691 5.21384 0.955912 5.36345C0.950133 5.51306 1.00102 5.65933 1.09841 5.77305L1.09806 5.77335L1.10632 5.7816L5.74188 10.4127Z"
+                    fill="#EF4E44"
+                    stroke="#EF4E44"
+                    stroke-width="0.3"
+                  />
+                </svg>
+                <p class="formLinkText">30-day money back guarantee.</p>
+              </li>
+              <li class="formLink">
+               
+                <svg
+                  class="formIconCheck"
+                  width="15"
+                  height="16"
+                  viewBox="0 0 15 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5.74188 10.4127L5.84797 10.5187L5.95399 10.4126L14.3895 1.97263L14.3899 1.97295L14.3974 1.96416C14.4948 1.85044 14.5457 1.70417 14.5399 1.55456C14.5341 1.40495 14.4721 1.26303 14.3662 1.15717C14.2603 1.0513 14.1184 0.989279 13.9688 0.9835C13.8192 0.977721 13.6729 1.02861 13.5592 1.12599L13.5589 1.12566L13.5508 1.1338L5.83907 8.83675L1.94507 4.94275L1.94539 4.94243L1.93657 4.93488C1.82286 4.8375 1.67658 4.78661 1.52697 4.79239C1.37736 4.79817 1.23545 4.86019 1.12958 4.96606C1.02371 5.07192 0.961691 5.21384 0.955912 5.36345C0.950133 5.51306 1.00102 5.65933 1.09841 5.77305L1.09806 5.77335L1.10632 5.7816L5.74188 10.4127Z"
+                    fill="#EF4E44"
+                    stroke="#EF4E44"
+                    stroke-width="0.3"
+                  />
+                </svg>
+                <p class="formLinkText">No commitments. Cancel anytime.</p>
+              </li>
+            </ul>
+            <button class="button">Save my plan & сontinue</button>
+
+            <a href="#" class="formLeave">Leave anyway</a>
+          </form>
+        </div>
+      </div>
+    </section>
+`;
+
+document.body.insertAdjacentHTML("afterbegin", style);
+
+document.body.insertAdjacentHTML("beforeend", popup);
+
+let scrolled;
+let timer;
+
+const refs = {
+  modal: document.querySelector("[data-modal]"),
+  windowBody: document.querySelector("body"),
+  logo: document.querySelector(".logo"),
+  closeOverlay: document.querySelector(".backdropModal"),
+};
+
+refs.windowBody.addEventListener("mouseout", toggleModal);
+refs.closeOverlay.addEventListener("click", toggleModal);
+
+window.onscroll = function () {
+  toggleModal();
+};
+
+function toggleModal() {
+  scrolled = window.pageXOffset;
+
+  scrollToTop();
+  refs.logo.classList.add("modal-open");
+  refs.modal.classList.remove("is-hidden");
+
+  refs.windowBody.removeEventListener("mouseout", toggleModal);
+}
+
+function scrollToTop() {
+  if (scrolled > 0) {
+    window.scrollTo(0, scrolled);
+    scrolled = scrolled - 100;
+    timer = setTimeout(scrollToTop, 1000);
+  } else {
+    clearTimeout(timer);
+    window.scrollTo(0, 0);
+  }
+}
