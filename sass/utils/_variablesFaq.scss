@@ -1,0 +1,23 @@
+@mixin for-size($range) {
+  $phone-upper-boundary: 332px;
+  $tablet-portrait-upper-boundary: 569px;
+  $desktop-upper-boundary: 1200px;
+
+  @if $range == phone-only {
+    @media (max-width: #{$phone-upper-boundary - 1}) {
+      @content;
+    }
+  } @else if $range == mobile {
+    @media (min-width: $phone-upper-boundary) {
+      @content;
+    }
+  } @else if $range == tablet {
+    @media (min-width: $tablet-portrait-upper-boundary) {
+      @content;
+    }
+  } @else if $range == desktop {
+    @media (min-width: $desktop-upper-boundary) {
+      @content;
+    }
+  }
+}
